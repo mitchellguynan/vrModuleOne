@@ -9,11 +9,13 @@ public class PlayerController : MonoBehaviour
     public float speed = 0;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
+    public AudioClip winTone;
 
     private Rigidbody rb;
     private int count;
     private float movementX;
     private float movementY;
+    private AudioSource source;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
         SetCountText();
         winTextObject.SetActive(false);
+        source = GetComponent<AudioSource>();
     }
 
     void OnMove(InputValue movementValue)
@@ -39,6 +42,7 @@ public class PlayerController : MonoBehaviour
         if(count >= 12)
         {
             winTextObject.SetActive(true);
+            source.PlayOneShot(winTone);
         }
     }
 
@@ -57,6 +61,7 @@ public class PlayerController : MonoBehaviour
             count = count + 1;
 
             SetCountText();
+            source.Play();
         }
     }
 }
