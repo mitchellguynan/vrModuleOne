@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if(count >= 12)
+        if(count >= 13)
         {
             winTextObject.SetActive(true);
             source.PlayOneShot(winTone);
@@ -48,9 +48,24 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-      Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
-      rb.AddForce(movement * speed);
+        rb.AddForce(movement * speed);
+        {
+            if (Input.GetKeyDown("space") && rb.transform.position.y <= 0.5f)
+            {
+                Vector3 jump = new Vector3(0.0f, 200.0f, 0.0f);
+
+                rb.AddForce(jump);
+            }
+        }
+        
+        //if (Input.GetKeyDown("space") && rb.transform.position.y <= 0.5f)
+        //{
+        //    Vector3 jump = new Vector3(0.0f, 200.0f, 0.0f);
+
+        //    rb.AddForce(jump * speed);
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
