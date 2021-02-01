@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             count = count + 1;
-
+            speed += 2;
             SetCountText();
             source.Play();
         }
